@@ -1259,7 +1259,10 @@ function insertHref(node, text) {
     }
     const hrefAttribute = (_a = node.attributes) === null || _a === void 0 ? void 0 : _a.find(attr => attr.name === 'href');
     if (!hrefAttribute) {
-        node.attributes = [{ name: 'href', value: [href], valueType: 'doubleQuote' }];
+        if (!node.attributes) {
+            node.attributes = [];
+        }
+        node.attributes.push({ name: 'href', value: [href], valueType: 'doubleQuote' });
     }
     else if (!hrefAttribute.value) {
         hrefAttribute.value = [href];
@@ -4373,8 +4376,8 @@ var stylesheetSnippets = {
 	"fxw": "flex-wrap:nowrap|wrap|wrap-reverse",
 	"fsz": "font-size",
 	"fsza": "font-size-adjust",
-	"gtc": "grid-template-columns:repeat()|minmax()",
-	"gtr": "grid-template-rows:repeat()|minmax()",
+	"gtc": "grid-template-columns:repeat(${0})|minmax()",
+	"gtr": "grid-template-rows:repeat(${0})|minmax()",
 	"gta": "grid-template-areas",
 	"gt": "grid-template",
 	"gg": "grid-gap",
@@ -4695,4 +4698,4 @@ function stylesheet(abbr, config) {
     return css(parse$1(abbr, config), config);
 }
 
-export default expandAbbreviation;
+export { expandAbbreviation as default };
