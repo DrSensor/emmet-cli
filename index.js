@@ -9,14 +9,15 @@ else if (scriptArgs.length === 1 || scriptArgs[1] === "-h" || scriptArgs[1] === 
 }
 
 // keep indentation
-let indent = scriptArgs[1][0]
+let indent = scriptArgs[1][0] ?? ""
 if (indent === ' ' || indent === '\t') {
     for (const char of scriptArgs[1].slice(1)) {
         if (indent[0] === char) indent += char
     }
 }
+indent = indent.slice(0, -1)
 
-let newline = scriptArgs[1][scriptArgs[1].length-1] === '\n' ? '\n' : ''
+// let newline = scriptArgs[1][scriptArgs[1].length-1] === '\n' ? '\n' : ''
 
 const expanded = expand(scriptArgs[1].trim());
-printf(indent.slice(0, -1) + expanded + newline)
+printf(indent + expanded + (indent && '\n'))
