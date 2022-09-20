@@ -8,5 +8,5 @@ else if (scriptArgs.length === 1 || scriptArgs[1] === "-h" || scriptArgs[1] === 
     exit(0)
 }
 
-const expanded = expand(scriptArgs[1]);
+const expanded = expand(scriptArgs[1].trim());
 printf(expanded)
