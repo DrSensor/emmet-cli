@@ -8,5 +8,13 @@ else if (scriptArgs.length === 1 || scriptArgs[1] === "-h" || scriptArgs[1] === 
     exit(0)
 }
 
+// keep indentation
+let indent = scriptArgs[1][0]
+if (indent === ' ' || indent === '\t') {
+    for (const char of scriptArgs[1].slice(1)) {
+        if (indent[0] === char) indent += char
+    }
+}
+
 const expanded = expand(scriptArgs[1].trim());
-printf(expanded)
+printf(indent.slice(0, -1) + expanded)
