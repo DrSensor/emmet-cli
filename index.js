@@ -16,5 +16,7 @@ if (indent === ' ' || indent === '\t') {
     }
 }
 
+let newline = scriptArgs[1][scriptArgs[1].length-1] === '\n' ? '\n' : ''
+
 const expanded = expand(scriptArgs[1].trim());
-printf(indent.slice(0, -1) + expanded)
+printf(indent.slice(0, -1) + expanded + newline)
